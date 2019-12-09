@@ -80,9 +80,7 @@ class WelcomeController {
                     .exchange(new URI(endpoint), HttpMethod.GET, httpEntity, List.class)
                     .getBody();
 
-            List<Vet> vetsOnCall = (List<Vet>) response;
-
-            return vetsOnCall;
+            return (List<Vet>) response;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
