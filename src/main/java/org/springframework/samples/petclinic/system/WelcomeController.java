@@ -25,7 +25,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.samples.petclinic.vet.Vet;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
@@ -49,13 +48,13 @@ class WelcomeController {
 
     @GetMapping("/")
     public String welcome(Map<String, Object> model) {
-        List<Vet> vets = getCurrentVetsOnCall();
+        List<?> vets = getCurrentVetsOnCall();
         vets.forEach(a -> System.out.println(a));
         model.put("vets", vets);
         return "welcome";
     }
 
-    private List<Vet> getCurrentVetsOnCall() {
+    private List<?> getCurrentVetsOnCall() {
         final String endpoint = this.RESOURCE_SERVER_BASE_URI+"/api/vets/on-call";
 
         try {
@@ -77,11 +76,10 @@ class WelcomeController {
 
             HttpEntity<?> httpEntity = new HttpEntity(null, new HttpHeaders());
 
-            List<?> response = template
+            return template
                     .exchange(new URI(endpoint), HttpMethod.GET, httpEntity, List.class)
                     .getBody();
 
-            return (List<Vet>) response;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
