@@ -11,20 +11,18 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <h2>Veterinarians currently on-call</h2>
+        <div class="col-md-6">
+            <h2>Veterinarians currently on-call <span style="color:#6db33f">(Served from authenicated REST API.)</span></h2>
             <small>(Served from authenicated REST API.)</small>
             <table id="vets" class="table table-striped">
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Specialty</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="vet : ${vets}">
-                    <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-                    <td th:text="${vet.specialty}"></td>
+                    <td th:text="${vet}"></td>
                 </tr>
                 </tbody>
             </table>
