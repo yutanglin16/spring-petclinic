@@ -17,7 +17,7 @@ jobs:
       with:
         app-name: "petclinic-with-certs"
         publish-profile: ${{ secrets.PETCLINIC_WITH_CERTS_PUB_PROFILE }}
-        package: clientapp/target/app.jar
+        package: target/app.jar
 
 #    - uses: azure/webapps-deploy@v1
 #      with:
