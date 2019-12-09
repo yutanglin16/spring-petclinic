@@ -10,25 +10,29 @@
           <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}"/>
         </div>
     </div>
-
-    <h2>Current veterinarians on-call</h2>
-    <table id="vets" class="table table-striped">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Specialties</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="vet : ${vets}">
-            <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-            <td>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Veterinarians currently on-call</h2>
+            <small>(Served from authenicated REST API.)</small>
+            <table id="vets" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Specialties</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="vet : ${vets}">
+                    <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
+                    <td>
                 <span th:each="specialty : ${vet.specialties}"
                       th:text="${specialty.name + ' '}" />
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
   </body>
 
