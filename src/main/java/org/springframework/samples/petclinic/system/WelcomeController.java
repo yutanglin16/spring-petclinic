@@ -50,6 +50,7 @@ class WelcomeController {
     @GetMapping("/")
     public String welcome(Map<String, Object> model) {
         List<Vet> vets = getCurrentVetsOnCall();
+        vets.forEach(a -> System.out.println(a));
         model.put("vets", vets);
         return "welcome";
     }
