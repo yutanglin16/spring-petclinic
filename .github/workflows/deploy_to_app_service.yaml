@@ -19,8 +19,8 @@ jobs:
         publish-profile: ${{ secrets.PETCLINIC_WITH_CERTS_PUB_PROFILE }}
         package: target/app.jar
 
-#    - uses: azure/webapps-deploy@v1
-#      with:
-#        app-name: "petclinic-without-certs"
-#        publish-profile: ${{ secrets.PETCLINIC_WITHOUT_CERTS_PUB_PROFILE }}
-#        package: resourceserver/target/app.jar
+    - uses: azure/webapps-deploy@v1
+      with:
+        app-name: "petclinic-without-certs"
+        publish-profile: ${{ secrets.PETCLINIC_WITHOUT_CERTS_PUB_PROFILE }}
+        package: target/app.jar
