@@ -18,15 +18,13 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Specialties</th>
+                    <th>Specialty</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="vet : ${vets}">
                     <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
-                    <td>
-                        <span th:text="${vet.specialties[0]}"/>
-                    </td>
+                    <td th:text="${vet.specialty}"></td>
                 </tr>
                 </tbody>
             </table>
