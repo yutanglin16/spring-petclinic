@@ -1,0 +1,26 @@
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build_and_deploy_apps:
+    runs-on: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Maven build
+      run: mvn clean package -DskipTests
+
+    - uses: azure/webapps-deploy@v1
+      with:
+        app-name: "petclinic-with-certs"
+        publish-profile: ${{ secrets.PETCLINIC_WITH_CERTS_PUB_PROFILE }}
+        package: clientapp/target/app.jar
+
+#    - uses: azure/webapps-deploy@v1
+#      with:
+#        app-name: "petclinic-without-certs"
+#        publish-profile: ${{ secrets.PETCLINIC_WITHOUT_CERTS_PUB_PROFILE }}
+#        package: resourceserver/target/app.jar

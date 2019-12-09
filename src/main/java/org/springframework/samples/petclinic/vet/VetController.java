@@ -19,6 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,5 +62,55 @@ class VetController {
         vets.getVetList().addAll(this.vets.findAll());
         return vets;
     }
+
+    /**
+     *
+     */
+    @GetMapping("/vets/on-call")
+    public @ResponseBody List<String> getVetsOnCall(){
+        return Arrays.asList("George", "Simon");
+
+        /*
+        final String endpoint = this.RESOURCE_SERVER_BASE_URI+"/api/data";
+
+        // Implementation: https://stackoverflow.com/a/45717851/10265855
+        try {
+            final KeyStore keyStore = this.getKeystore();
+            TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
+
+            SSLContext sslContext = SSLContextBuilder
+                    .create()
+                    .loadKeyMaterial(keyStore,  "changeit".toCharArray())
+                    .loadTrustMaterial(keyStore, acceptingTrustStrategy)
+                    .build();
+            HttpClient client = HttpClients
+                    .custom()
+                    .setSSLContext(sslContext)
+                    .build();
+
+            RestTemplate template = new RestTemplate();
+            template.setRequestFactory(new HttpComponentsClientHttpRequestFactory(client));
+
+            HttpEntity<?> httpEntity = new HttpEntity(null, new HttpHeaders());
+
+            return template
+                .exchange(new URI(endpoint), HttpMethod.GET, httpEntity, Map.class)
+                .getBody();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         */
+    }
+
+    public KeyStore getKeystore() throws KeyStoreException, NoSuchAlgorithmException,
+            IOException, CertificateException {
+        KeyStore keyStore = KeyStore.getInstance("jks");
+        keyStore.load(
+                new FileInputStream(System.getenv("JAVA_HOME")+"/lib/security/client.jks"),
+                "changeit".toCharArray());
+        return keyStore;
+    }
+
 
 }
