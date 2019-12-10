@@ -86,6 +86,9 @@ class WelcomeController {
         }
     }
 
+    /**
+     * Returns the Java Key Store.
+     */
     private KeyStore getKeystore() throws KeyStoreException, NoSuchAlgorithmException,
             IOException, CertificateException {
         KeyStore keyStore = KeyStore.getInstance("jks");
