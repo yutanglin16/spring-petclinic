@@ -18,9 +18,3 @@ jobs:
         app-name: "ylaz-java-se-log-test-app"
         publish-profile: ${{ secrets.PETCLINIC_WITH_CERTS_PUB_PROFILE }}
         package: target/app.jar
-
-    - uses: azure/webapps-deploy@v1
-      with:
-        app-name: "ylaz-java-se-log-test-app"
-        publish-profile: ${{ secrets.PETCLINIC_WITHOUT_CERTS_PUB_PROFILE }}
-        package: target/app.jar
